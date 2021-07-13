@@ -1,0 +1,11 @@
+D:\working directory\TracebillAppApiLogic\bin\Debug\TracebillAppApiLogic.dll.config
+D:\working directory\TracebillAppApiLogic\bin\Debug\TracebillAppApiLogic.dll
+D:\working directory\TracebillAppApiLogic\bin\Debug\TracebillAppApiLogic.pdb
+D:\working directory\TracebillAppApiLogic\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\working directory\TracebillAppApiLogic\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\working directory\TracebillAppApiLogic\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\working directory\TracebillAppApiLogic\obj\Debug\TracebillAppApiLogic.csprojAssemblyReference.cache
+D:\working directory\TracebillAppApiLogic\obj\Debug\TracebillAppApiLogic.csproj.CoreCompileInputs.cache
+D:\working directory\TracebillAppApiLogic\obj\Debug\TracebillAppApiLogic.csproj.CopyComplete
+D:\working directory\TracebillAppApiLogic\obj\Debug\TracebillAppApiLogic.dll
+D:\working directory\TracebillAppApiLogic\obj\Debug\TracebillAppApiLogic.pdb

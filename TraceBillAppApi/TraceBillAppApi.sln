@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraceBillAppApi", "TraceBillAppApi.csproj", "{CCC282EA-5D1B-47A2-B8C5-D57235522903}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracebillAppApiLogic", "..\TracebillAppApiLogic\TracebillAppApiLogic.csproj", "{7906D368-4ED1-4A98-9B8A-F6B6A9604644}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCC282EA-5D1B-47A2-B8C5-D57235522903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCC282EA-5D1B-47A2-B8C5-D57235522903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCC282EA-5D1B-47A2-B8C5-D57235522903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCC282EA-5D1B-47A2-B8C5-D57235522903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7906D368-4ED1-4A98-9B8A-F6B6A9604644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7906D368-4ED1-4A98-9B8A-F6B6A9604644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7906D368-4ED1-4A98-9B8A-F6B6A9604644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7906D368-4ED1-4A98-9B8A-F6B6A9604644}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {058EE58C-1C23-458C-9AB2-40C453993349}
+	EndGlobalSection
+EndGlobal
