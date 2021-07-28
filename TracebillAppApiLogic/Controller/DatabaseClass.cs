@@ -98,5 +98,91 @@ namespace TracebillAppApiLogic.Controller
             command = billingdb.GetStoredProcCommand("[Mob_GetAccountStatement]", custRef, startDate);
             billingdb.ExecuteNonQuery(command);
         }
+
+        internal DataTable GetTicketes()
+        {
+            command = crmdb.GetStoredProcCommand("GetTickets");
+            returnData = crmdb.ExecuteDataSet(command).Tables[0];
+            return returnData;
+        }
+
+        internal DataTable GetTicketById(string ticket_id)
+        {
+            command = crmdb.GetStoredProcCommand("GetTicketById", ticket_id);
+            returnData = crmdb.ExecuteDataSet(command).Tables[0];
+            return returnData;
+        }
+
+        internal void LogError(string method, string Level, string error, string loggedby)
+        {
+            command = crmdb.GetStoredProcCommand("LogSystemError", method, Level, error, loggedby);
+                crmdb.ExecuteNonQuery(command);
+        }
+
+        internal DataTable GetTicketResolutionDetails(string ticket_id)
+        {
+            command = crmdb.GetStoredProcCommand("GetTicketResolutionDetails", ticket_id);
+            returnData = crmdb.ExecuteDataSet(command).Tables[0];
+            return returnData;
+        }
+
+        internal void Resolveticket(string ticket_id, string admin_remark, string resolvedby)
+        {
+            command = crmdb.GetStoredProcCommand("Resolveticket", ticket_id, admin_remark, resolvedby);
+            crmdb.ExecuteNonQuery(command);
+        }
+
+        internal DataTable InsertTicket(string complainantType, string custRef, string custName, string complaintSource, string complaintCategory, string complaintSubCategory, string custContact, string email_id, string prioprity, string ticketDetails)
+        {
+            command = crmdb.GetStoredProcCommand("InsertTicket", complainantType, custRef, custName, complaintSource, complaintCategory, complaintSubCategory, custContact, email_id, prioprity, ticketDetails);
+            returnData = crmdb.ExecuteDataSet(command).Tables[0];
+            return returnData;
+        }
+
+        internal DataTable GetComplaintCategoriesById(string categoryid)
+        {
+            command = crmdb.GetStoredProcCommand("GetComplaintCategoriesById", categoryid);
+            returnData = crmdb.ExecuteDataSet(command).Tables[0];
+            return returnData;
+        }
+
+        internal DataTable GetComplaintSubCategoriesById(string subcategoryid)
+        {
+            command = crmdb.GetStoredProcCommand("GetComplaintSubCategoriesById", subcategoryid);
+            returnData = crmdb.ExecuteDataSet(command).Tables[0];
+            return returnData;
+        }
+
+        internal void UpdateComplaintSubCategory(string subCategoryId, string subCategoryName)
+        {
+            command = crmdb.GetStoredProcCommand("UpdateComplaintSubCategory", subCategoryId, subCategoryName);
+            crmdb.ExecuteNonQuery(command);
+        }
+
+        internal void UpdateComplaintCategory(string category, string categoryId)
+        {
+            command = crmdb.GetStoredProcCommand("UpdateComplaintCategory", category, categoryId);
+            crmdb.ExecuteNonQuery(command);
+        }
+
+        internal DataTable GetComplaintCategories()
+        {
+            command = crmdb.GetStoredProcCommand("GetComplaintCategories");
+            returnData = crmdb.ExecuteDataSet(command).Tables[0];
+            return returnData;
+        }
+
+        internal void RegisterComplaintSubCategory(string categoryId, string subCategoryName)
+        {
+            command = crmdb.GetStoredProcCommand("RegisterComplaintSubCategory", categoryId, subCategoryName);
+            crmdb.ExecuteNonQuery(command);
+        }
+
+        internal DataTable GetComplaintSubCategories()
+        {
+            command = crmdb.GetStoredProcCommand("GetComplaintSubCategories");
+            returnData = crmdb.ExecuteDataSet(command).Tables[0];
+            return returnData;
+        }
     }
 }

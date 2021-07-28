@@ -37,13 +37,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
-      <HintPath>..\billingservice\BillingServiceLive\BillingService\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <HintPath>..\..\escoproject\LiquidLogic\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
-      <HintPath>..\billingservice\BillingServiceLive\BillingService\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <HintPath>..\..\escoproject\LiquidLogic\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ObjectBuilder">
-      <HintPath>..\billingservice\BillingServiceLive\BillingService\bin\Debug\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+      <HintPath>..\..\escoproject\LiquidLogic\bin\Debug\Microsoft.Practices.ObjectBuilder.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,9 +57,18 @@
   <ItemGroup>
     <Compile Include="Controller\DatabaseClass.cs" />
     <Compile Include="Controller\Processor.cs" />
+    <Compile Include="Controller\TicketProcessor.cs" />
+    <Compile Include="Model\ComplaintCategories.cs" />
+    <Compile Include="Model\ComplaintCategory.cs" />
+    <Compile Include="Model\ComplaintSubCategories.cs" />
+    <Compile Include="Model\ComplaintSubCategory.cs" />
     <Compile Include="Model\GenericResponse.cs" />
     <Compile Include="Model\RegisterNewCustomer.cs" />
     <Compile Include="Model\NewConnection.cs" />
+    <Compile Include="Model\Ticket.cs" />
+    <Compile Include="Model\TicketResolution.cs" />
+    <Compile Include="Model\TicketResolutionSearch.cs" />
+    <Compile Include="Model\TicketSearch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

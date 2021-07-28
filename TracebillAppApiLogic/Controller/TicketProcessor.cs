@@ -8,174 +8,24 @@ using TracebillAppApiLogic.Model;
 
 namespace TracebillAppApiLogic.Controller
 {
-    public class Processor
+    public class TicketProcessor
     {
-        DatabaseClass databaseClass = new DatabaseClass();
-        NewConnection newConnection;
-        RegisterNewCustomer registerUser;
-        Login login;
-        ElectronicBill electronicBill;
-        Payments payments;
-        HistoricalReadings historicalReadings;
-        AccountStatement accountStatement;
-        RetrieveComplaintStatus retrieveComplaintStatus;
-        TrackNewConnection trackNewConnection;
-        DataTable dataTable;
         Ticket ticket;
-
-        public Processor(NewConnection newConnection)
-        {
-            this.newConnection = newConnection;
-        }
-
-        public Processor(RegisterNewCustomer registerUser) 
-        {
-            this.registerUser = registerUser;
-        }
-
-        public Processor(Login login)
-        {
-            this.login = login;
-        }
-
-        public Processor(ElectronicBill electronicBill)
-        {
-            this.electronicBill = electronicBill;
-        }
-
-       
-
-        public Processor(HistoricalReadings historicalReadings)
-        {
-            this.historicalReadings = historicalReadings;
-        }
-
-        public Processor(Payments payments)
-        {
-            this.payments = payments;
-        }
-
-        public Processor(RetrieveComplaintStatus retrieveComplaintStatus)
-        {
-            this.retrieveComplaintStatus = retrieveComplaintStatus;
-        }
-
-
-        public Processor(AccountStatement accountStatement)
-        {
-            this.accountStatement = accountStatement;
-        }
-
-        public Processor(TrackNewConnection trackNewConnection)
-        {
-            this.trackNewConnection = trackNewConnection;
-        }
-
-        public Processor(Ticket ticket) 
+        DatabaseClass dh = new DatabaseClass();
+        DataTable dataTable;
+        public TicketProcessor(Ticket ticket)
         {
             this.ticket = ticket;
         }
-
-        public GenericResponse NewApplicant()
-        {
-            GenericResponse response = new GenericResponse();
-            try
-            {
-                databaseClass.CreateCustomer(newConnection.applicationID, newConnection.applicationNumber, newConnection.firstNam, newConnection.lastName,
-                    newConnection.otherName, newConnection.physicalAddress, newConnection.emailAddress, newConnection.ocupation, newConnection.workPlace, newConnection.telephone,
-                    newConnection.countryId, newConnection.state, newConnection.constituency, newConnection.city, newConnection.street, newConnection.village, newConnection.zipCode,
-                    newConnection.division, newConnection.IdNumber, newConnection.IdTypeID, newConnection.customerType, newConnection.connectionType, newConnection.optionID, newConnection.serviceID,
-                    newConnection.classID, newConnection.statusID, newConnection.capturedBy, newConnection.applicationDate, newConnection.areaId, newConnection.branchId);
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccessful = false;
-                response.ErrorMessage = ex.Message;
-            }
-            return response;
-        }
-
-        public GenericResponse RegisterNewCustomer()
-        {
-            GenericResponse response = new GenericResponse();
-            try
-            {
-                databaseClass.RegisterNewCustomer(registerUser.custRef, registerUser.firstNam, registerUser.lastName, registerUser.telephone, registerUser.emailAddress);
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccessful = false;
-                response.ErrorMessage = ex.Message;
-            }
-            return response;
-        }
-
-        public GenericResponse Login()
-        {
-            GenericResponse response = new GenericResponse();
-            try
-            {
-                databaseClass.Login(login.custRef, login.password);
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccessful = false;
-                response.ErrorMessage = ex.Message;
-            }
-            return response;
-        }
-
-        public GenericResponse ElectronicBill()
-        {
-            GenericResponse response = new GenericResponse();
-            try
-            {
-                databaseClass.ElectronicBill(electronicBill.custRef, electronicBill.period);
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccessful = false;
-                response.ErrorMessage = ex.Message;
-            }
-            return response;
-        }
-
-        public GenericResponse Payments()
-        {
-            GenericResponse response = new GenericResponse();
-            try
-            {
-                databaseClass.Payments(payments.custRef);
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccessful = false;
-                response.ErrorMessage = ex.Message;
-            }
-            return response;
-        }
-
-        public GenericResponse RetrieveComplaintStatus()
-        {
-            GenericResponse response = new GenericResponse();
-            try
-            {
-                databaseClass.ReportComplaint(retrieveComplaintStatus.ticketID);
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccessful = false;
-                response.ErrorMessage = ex.Message;
-            }
-            return response;
-        }
+        public TicketProcessor()
+        { }
 
         public TicketSearch GetTickets()
         {
             TicketSearch ticketSearch = new TicketSearch();
             try
             {
-                dataTable = databaseClass.GetTicketes();
+                dataTable = dh.GetTicketes();
                 if (dataTable.Rows.Count > 0)
                 {
                     List<Ticket> tickets = new List<Ticket>();
@@ -210,7 +60,7 @@ namespace TracebillAppApiLogic.Controller
             }
             catch (Exception ex)
             {
-                databaseClass.LogError("GetTickets", "TicketProcessor", ex.Message, "LiquidCRM");
+                dh.LogError("GetTickets", "TicketProcessor", ex.Message, "LiquidCRM");
                 ticketSearch.IsSuccessful = false;
                 ticketSearch.ErrorMessage = ex.Message;
             }
@@ -221,7 +71,7 @@ namespace TracebillAppApiLogic.Controller
             TicketSearch ticketSearch = new TicketSearch();
             try
             {
-                dataTable = databaseClass.GetTicketById(ticket.ticket_id);
+                dataTable = dh.GetTicketById(ticket.ticket_id);
                 if (dataTable.Rows.Count > 0)
                 {
                     List<Ticket> tickets = new List<Ticket>();
@@ -256,7 +106,7 @@ namespace TracebillAppApiLogic.Controller
             }
             catch (Exception ex)
             {
-                databaseClass.LogError("GetTickets", "TicketProcessor", ex.Message, "TRACEBILLAPP");
+                dh.LogError("GetTickets", "TicketProcessor", ex.Message, "TRACEBILLAPP");
                 ticketSearch.IsSuccessful = false;
                 ticketSearch.ErrorMessage = ex.Message;
             }
@@ -268,7 +118,7 @@ namespace TracebillAppApiLogic.Controller
             TicketSearch ticketSearch = new TicketSearch();
             try
             {
-                dataTable = databaseClass.GetTicketById(ticketid);
+                dataTable = dh.GetTicketById(ticketid);
                 if (dataTable.Rows.Count > 0)
                 {
                     List<Ticket> tickets = new List<Ticket>();
@@ -303,7 +153,7 @@ namespace TracebillAppApiLogic.Controller
             }
             catch (Exception ex)
             {
-                databaseClass.LogError("GetTickets", "TicketProcessor", ex.Message, "LiquidCRM");
+                dh.LogError("GetTickets", "TicketProcessor", ex.Message, "LiquidCRM");
                 ticketSearch.IsSuccessful = false;
                 ticketSearch.ErrorMessage = ex.Message;
             }
@@ -315,7 +165,7 @@ namespace TracebillAppApiLogic.Controller
             TicketResolutionSearch ticketResolutionSearch = new TicketResolutionSearch();
             try
             {
-                dataTable = databaseClass.GetTicketResolutionDetails(ticket.ticket_id);
+                dataTable = dh.GetTicketResolutionDetails(ticket.ticket_id);
                 if (dataTable.Rows.Count > 0)
                 {
                     ticketResolutionSearch.IsSuccessful = true;
@@ -353,7 +203,7 @@ namespace TracebillAppApiLogic.Controller
             GenericResponse response = new GenericResponse();
             try
             {
-                databaseClass.Resolveticket(ticket.ticket_id, ticket.admin_remark, ticket.resolvedby);
+                dh.Resolveticket(ticket.ticket_id, ticket.admin_remark, ticket.resolvedby);
                 response.IsSuccessful = true;
                 response.ErrorMessage = "SUCCESSFUL";
             }
@@ -371,7 +221,7 @@ namespace TracebillAppApiLogic.Controller
             try
             {
 
-                dataTable = databaseClass.InsertTicket(ticket.ComplainantType, ticket.CustRef, ticket.CustName, ticket.ComplaintSource, ticket.ComplaintCategory,
+                dataTable = dh.InsertTicket(ticket.ComplainantType, ticket.CustRef, ticket.CustName, ticket.ComplaintSource, ticket.ComplaintCategory,
                     ticket.ComplaintSubCategory, ticket.CustContact, ticket.email_id, ticket.prioprity, ticket.TicketDetails);
                 if (dataTable.Rows.Count > 0)
                 {
@@ -392,13 +242,13 @@ namespace TracebillAppApiLogic.Controller
             }
             return response;
         }
-
+        
         public ComplaintCategories GetComplaintCategoriesById(string categoryid)
         {
             ComplaintCategories complaintCategories = new ComplaintCategories();
             try
             {
-                dataTable = databaseClass.GetComplaintCategoriesById(categoryid);
+                dataTable = dh.GetComplaintCategoriesById(categoryid);
                 if (dataTable.Rows.Count > 0)
                 {
                     List<ComplaintCategory> complaints = new List<ComplaintCategory>();
@@ -434,7 +284,7 @@ namespace TracebillAppApiLogic.Controller
             ComplaintSubCategories complaintSubCategories = new ComplaintSubCategories();
             try
             {
-                dataTable = databaseClass.GetComplaintSubCategoriesById(subcategoryid);
+                dataTable = dh.GetComplaintSubCategoriesById(subcategoryid);
                 if (dataTable.Rows.Count > 0)
                 {
                     List<ComplaintSubCategory> complaintSubs = new List<ComplaintSubCategory>();
@@ -471,7 +321,7 @@ namespace TracebillAppApiLogic.Controller
             GenericResponse response = new GenericResponse();
             try
             {
-                databaseClass.UpdateComplaintSubCategory(subCategoryId, subCategoryName);
+                dh.UpdateComplaintSubCategory(subCategoryId, subCategoryName);
                 response.IsSuccessful = true;
                 response.ErrorMessage = "Complaint Sub Category Updated Successfully";
             }
@@ -488,7 +338,7 @@ namespace TracebillAppApiLogic.Controller
             GenericResponse response = new GenericResponse();
             try
             {
-                databaseClass.UpdateComplaintCategory(category, categoryId);
+                dh.UpdateComplaintCategory(category, categoryId);
                 response.IsSuccessful = true;
                 response.ErrorMessage = "COMPLAINT CATEGORY UPDATED SUCCESSFULLY";
             }
@@ -505,7 +355,7 @@ namespace TracebillAppApiLogic.Controller
             ComplaintCategories complaintCategories = new ComplaintCategories();
             try
             {
-                dataTable = databaseClass.GetComplaintCategories();
+                dataTable = dh.GetComplaintCategories();
                 if (dataTable.Rows.Count > 0)
                 {
                     List<ComplaintCategory> complaints = new List<ComplaintCategory>();
@@ -541,7 +391,7 @@ namespace TracebillAppApiLogic.Controller
             GenericResponse response = new GenericResponse();
             try
             {
-                databaseClass.RegisterComplaintSubCategory(subCategory.CategoryId, subCategory.SubCategoryName);
+                dh.RegisterComplaintSubCategory(subCategory.CategoryId, subCategory.SubCategoryName);
                 response.IsSuccessful = true;
                 response.ErrorMessage = "COMPLAINT SUBCATEGORY RECORDED SUCCESSFULLY";
             }
@@ -558,7 +408,7 @@ namespace TracebillAppApiLogic.Controller
             ComplaintSubCategories complaintSubCategories = new ComplaintSubCategories();
             try
             {
-                dataTable = databaseClass.GetComplaintSubCategories();
+                dataTable = dh.GetComplaintSubCategories();
                 if (dataTable.Rows.Count > 0)
                 {
                     List<ComplaintSubCategory> complaintSubs = new List<ComplaintSubCategory>();
@@ -590,7 +440,8 @@ namespace TracebillAppApiLogic.Controller
             return complaintSubCategories;
         }
 
+        
 
-
+        
     }
 }
